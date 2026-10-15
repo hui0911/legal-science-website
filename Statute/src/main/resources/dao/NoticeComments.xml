@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.statute.server.dao.NoticeCommentsDao">
+
+    <select id="findList" parameterType="com.statute.server.dto.NoticeCommentsDTO" resultType="com.statute.server.dto.NoticeCommentsDTO">
+        select
+        noticeComments.*,
+        notice.banner_img,
+        notice.title,
+        users.nick_name,
+        users.head_img,
+        users1.nick_name as nickNameTwo,
+        users1.head_img as headImgTwo
+        from notice_comments noticeComments
+        left join notice notice on noticeComments.notice_id = notice.id
+		left join users users on noticeComments.user_id = users.id
+		left join users users1 on noticeComments.to_user_id = users1.id
+        <where>
+            <if test="id != null and id != ''">and noticeComments.id = #{id}</if>
+            <if test="commentInfo != null and commentInfo != ''">and noticeComments.comment_info like concat('%',#{commentInfo},'%')</if>
+            <if test="userId != null and userId != ''">and noticeComments.user_id = #{userId}</if>
+            <if test="noticeId != null and noticeId != ''">and noticeComments.notice_id = #{noticeId}</if>
+            <if test="createTime != null and createTime != ''">and noticeComments.create_time = #{createTime}</if>
+            <if test="toUserId != null and toUserId != ''">and noticeComments.to_user_id = #{toUserId}</if>
+            <if test="parentId != null">and noticeComments.parent_id = #{parentId}</if>
+            <if test="bannerImg != null and bannerImg != ''">and notice.banner_img = #{bannerImg}</if>
+            <if test="title != null and title != ''">and notice.title like concat('%',#{title},'%')</if>
+            <if test="nickName != null and nickName != ''">and users.nick_name like concat('%',#{nickName},'%')</if>
+            <if test="headImg != null and headImg != ''">and users.head_img = #{headImg}</if>
+        </where>
+        <if test="current != null and pageSize != null">
+            limit #{current},#{pageSize}
+        </if>
+    </select>
+
+    <select id="findPageCount" parameterType="com.statute.server.dto.NoticeCommentsDTO" resultType="java.lang.Integer">
+        select count(*) from notice_comments noticeComments
+        left join notice notice on noticeComments.notice_id = notice.id
+		left join users users on noticeComments.user_id = users.id
+        left join users users1 on noticeComments.to_user_id = users1.id
+        <where>
+            <if test="id != null and id != ''">and noticeComments.id = #{id}</if>
+            <if test="commentInfo != null and commentInfo != ''">and noticeComments.comment_info like concat('%',#{commentInfo},'%')</if>
+            <if test="userId != null and userId != ''">and noticeComments.user_id = #{userId}</if>
+            <if test="noticeId != null and noticeId != ''">and noticeComments.notice_id = #{noticeId}</if>
+            <if test="createTime != null and createTime != ''">and noticeComments.create_time = #{createTime}</if>
+            <if test="toUserId != null and toUserId != ''">and noticeComments.to_user_id = #{toUserId}</if>
+            <if test="parentId != null">and noticeComments.parent_id = #{parentId}</if>
+            <if test="bannerImg != null and bannerImg != ''">and notice.banner_img = #{bannerImg}</if>
+            <if test="title != null and title != ''">and notice.title like concat('%',#{title},'%')</if>
+            <if test="nickName != null and nickName != ''">and users.nick_name like concat('%',#{nickName},'%')</if>
+            <if test="headImg != null and headImg != ''">and users.head_img = #{headImg}</if>
+        </where>
+    </select>
+
+</mapper>

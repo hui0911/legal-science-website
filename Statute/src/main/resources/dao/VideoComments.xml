@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.statute.server.dao.VideoCommentsDao">
+
+    <select id="findList" parameterType="com.statute.server.dto.VideoCommentsDTO" resultType="com.statute.server.dto.VideoCommentsDTO">
+        select
+        videoComments.*,
+        videos.title,
+        videos.cover,
+        users.nick_name,
+        users.head_img,
+        users1.nick_name as nickNameTwo,
+        users1.head_img as headImgTwo
+        from video_comments videoComments
+        left join videos videos on videoComments.video_id = videos.id
+		left join users users on videoComments.user_id = users.id
+		left join users users1 on videoComments.to_user_id = users1.id
+        <where>
+            <if test="id != null and id != ''">and videoComments.id = #{id}</if>
+            <if test="commentInfo != null and commentInfo != ''">and videoComments.comment_info like concat('%',#{commentInfo},'%')</if>
+            <if test="userId != null and userId != ''">and videoComments.user_id = #{userId}</if>
+            <if test="videoId != null and videoId != ''">and videoComments.video_id = #{videoId}</if>
+            <if test="createTime != null and createTime != ''">and videoComments.create_time = #{createTime}</if>
+            <if test="toUserId != null and toUserId != ''">and videoComments.to_user_id = #{toUserId}</if>
+            <if test="parentId != null">and videoComments.parent_id = #{parentId}</if>
+            <if test="title != null and title != ''">and videos.title like concat('%',#{title},'%')</if>
+            <if test="cover != null and cover != ''">and videos.cover = #{cover}</if>
+            <if test="nickName != null and nickName != ''">and users.nick_name like concat('%',#{nickName},'%')</if>
+            <if test="headImg != null and headImg != ''">and users.head_img = #{headImg}</if>
+        </where>
+        <if test="current != null and pageSize != null">
+            limit #{current},#{pageSize}
+        </if>
+    </select>
+
+    <select id="findPageCount" parameterType="com.statute.server.dto.VideoCommentsDTO" resultType="java.lang.Integer">
+        select count(*) from video_comments videoComments
+        left join videos videos on videoComments.video_id = videos.id
+		left join users users on videoComments.user_id = users.id
+        left join users users1 on videoComments.to_user_id = users1.id
+        <where>
+            <if test="id != null and id != ''">and videoComments.id = #{id}</if>
+            <if test="commentInfo != null and commentInfo != ''">and videoComments.comment_info like concat('%',#{commentInfo},'%')</if>
+            <if test="userId != null and userId != ''">and videoComments.user_id = #{userId}</if>
+            <if test="videoId != null and videoId != ''">and videoComments.video_id = #{videoId}</if>
+            <if test="createTime != null and createTime != ''">and videoComments.create_time = #{createTime}</if>
+            <if test="toUserId != null and toUserId != ''">and videoComments.to_user_id = #{toUserId}</if>
+            <if test="parentId != null">and videoComments.parent_id = #{parentId}</if>
+            <if test="title != null and title != ''">and videos.title like concat('%',#{title},'%')</if>
+            <if test="cover != null and cover != ''">and videos.cover = #{cover}</if>
+            <if test="nickName != null and nickName != ''">and users.nick_name like concat('%',#{nickName},'%')</if>
+            <if test="headImg != null and headImg != ''">and users.head_img = #{headImg}</if>
+        </where>
+    </select>
+
+</mapper>

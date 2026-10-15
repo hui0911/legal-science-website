@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.statute.server.dao.MessageDao">
+
+    <select id="findList" parameterType="com.statute.server.dto.MessageDTO" resultType="com.statute.server.dto.MessageDTO">
+        select
+        message.*,
+        lawyers.name,
+        lawyers.avatar,
+        users.nick_name,
+        users.head_img
+        from message message
+        left join lawyers lawyers on message.lawyer_id = lawyers.id
+		left join users users on message.user_id = users.id
+        <where>
+            <if test="id != null and id != ''">and message.id = #{id}</if>
+            <if test="userId != null and userId != ''">and message.user_id = #{userId}</if>
+            <if test="lawyerId != null and lawyerId != ''">and message.lawyer_id = #{lawyerId}</if>
+            <if test="content != null and content != ''">and message.content = #{content}</if>
+            <if test="answer != null and answer != ''">and message.answer = #{answer}</if>
+            <if test="createTime != null and createTime != ''">and message.create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and message.update_time = #{updateTime}</if>
+            <if test="name != null and name != ''">and lawyers.name like concat('%',#{name},'%')</if>
+            <if test="avatar != null and avatar != ''">and lawyers.avatar = #{avatar}</if>
+            <if test="nickName != null and nickName != ''">and users.nick_name like concat('%',#{nickName},'%')</if>
+            <if test="headImg != null and headImg != ''">and users.head_img = #{headImg}</if>
+        </where>
+        <if test="current != null and pageSize != null">
+            limit #{current},#{pageSize}
+        </if>
+    </select>
+
+    <select id="findPageCount" parameterType="com.statute.server.dto.MessageDTO" resultType="java.lang.Integer">
+        select count(*) from message message
+        left join lawyers lawyers on message.lawyer_id = lawyers.id
+		left join users users on message.user_id = users.id
+        <where>
+            <if test="id != null and id != ''">and message.id = #{id}</if>
+            <if test="userId != null and userId != ''">and message.user_id = #{userId}</if>
+            <if test="lawyerId != null and lawyerId != ''">and message.lawyer_id = #{lawyerId}</if>
+            <if test="content != null and content != ''">and message.content = #{content}</if>
+            <if test="answer != null and answer != ''">and message.answer = #{answer}</if>
+            <if test="createTime != null and createTime != ''">and message.create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and message.update_time = #{updateTime}</if>
+            <if test="name != null and name != ''">and lawyers.name like concat('%',#{name},'%')</if>
+            <if test="avatar != null and avatar != ''">and lawyers.avatar = #{avatar}</if>
+            <if test="nickName != null and nickName != ''">and users.nick_name like concat('%',#{nickName},'%')</if>
+            <if test="headImg != null and headImg != ''">and users.head_img = #{headImg}</if>
+        </where>
+    </select>
+
+</mapper>

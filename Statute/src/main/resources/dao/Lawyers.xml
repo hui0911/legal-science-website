@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.statute.server.dao.LawyersDao">
+
+    <select id="findList" parameterType="com.statute.server.dto.LawyersDTO" resultType="com.statute.server.dto.LawyersDTO">
+        select
+        lawyers.*
+        from lawyers lawyers
+        <where>
+            <if test="id != null and id != ''">and lawyers.id = #{id}</if>
+            <if test="name != null and name != ''">and lawyers.name like concat('%',#{name},'%')</if>
+            <if test="avatar != null and avatar != ''">and lawyers.avatar = #{avatar}</if>
+            <if test="email != null and email != ''">and lawyers.email = #{email}</if>
+            <if test="level != null and level != ''">and lawyers.level = #{level}</if>
+            <if test="info != null and info != ''">and lawyers.info = #{info}</if>
+            <if test="certificate != null and certificate != ''">and lawyers.certificate = #{certificate}</if>
+            <if test="age != null and age != ''">and lawyers.age = #{age}</if>
+            <if test="sex != null and sex != ''">and lawyers.sex = #{sex}</if>
+            <if test="status != null and status != ''">and lawyers.status = #{status}</if>
+            <if test="createTime != null and createTime != ''">and lawyers.create_time = #{createTime}</if>
+        </where>
+        <if test="current != null and pageSize != null">
+            limit #{current},#{pageSize}
+        </if>
+    </select>
+
+    <select id="findPageCount" parameterType="com.statute.server.dto.LawyersDTO" resultType="java.lang.Integer">
+        select count(*) from lawyers lawyers
+        <where>
+            <if test="id != null and id != ''">and lawyers.id = #{id}</if>
+            <if test="name != null and name != ''">and lawyers.name like concat('%',#{name},'%')</if>
+            <if test="avatar != null and avatar != ''">and lawyers.avatar = #{avatar}</if>
+            <if test="email != null and email != ''">and lawyers.email = #{email}</if>
+            <if test="level != null and level != ''">and lawyers.level = #{level}</if>
+            <if test="info != null and info != ''">and lawyers.info = #{info}</if>
+            <if test="certificate != null and certificate != ''">and lawyers.certificate = #{certificate}</if>
+            <if test="age != null and age != ''">and lawyers.age = #{age}</if>
+            <if test="sex != null and sex != ''">and lawyers.sex = #{sex}</if>
+            <if test="status != null and status != ''">and lawyers.status = #{status}</if>
+            <if test="createTime != null and createTime != ''">and lawyers.create_time = #{createTime}</if>
+        </where>
+    </select>
+
+</mapper>

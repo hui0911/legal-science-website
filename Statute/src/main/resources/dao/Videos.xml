@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.statute.server.dao.VideosDao">
+
+    <select id="findList" parameterType="com.statute.server.dto.VideosDTO" resultType="com.statute.server.dto.VideosDTO">
+        select
+        videos.*,
+        types.type_name
+        from videos videos
+        left join types types on videos.type_id = types.id
+        <where>
+            <if test="id != null and id != ''">and videos.id = #{id}</if>
+            <if test="title != null and title != ''">and videos.title like concat('%',#{title},'%')</if>
+            <if test="cover != null and cover != ''">and videos.cover = #{cover}</if>
+            <if test="typeId != null and typeId != ''">and videos.type_id = #{typeId}</if>
+            <if test="seeNum != null and seeNum != ''">and videos.see_num = #{seeNum}</if>
+            <if test="createTime != null and createTime != ''">and videos.create_time = #{createTime}</if>
+            <if test="videoUrl != null and videoUrl != ''">and videos.video_url = #{videoUrl}</if>
+            <if test="typeName != null and typeName != ''">and types.type_name like concat('%',#{typeName},'%')</if>
+        </where>
+        <if test="current != null and pageSize != null">
+            limit #{current},#{pageSize}
+        </if>
+    </select>
+
+    <select id="findPageCount" parameterType="com.statute.server.dto.VideosDTO" resultType="java.lang.Integer">
+        select count(*) from videos videos
+        left join types types on videos.type_id = types.id
+        <where>
+            <if test="id != null and id != ''">and videos.id = #{id}</if>
+            <if test="title != null and title != ''">and videos.title like concat('%',#{title},'%')</if>
+            <if test="cover != null and cover != ''">and videos.cover = #{cover}</if>
+            <if test="typeId != null and typeId != ''">and videos.type_id = #{typeId}</if>
+            <if test="seeNum != null and seeNum != ''">and videos.see_num = #{seeNum}</if>
+            <if test="createTime != null and createTime != ''">and videos.create_time = #{createTime}</if>
+            <if test="videoUrl != null and videoUrl != ''">and videos.video_url = #{videoUrl}</if>
+            <if test="typeName != null and typeName != ''">and types.type_name like concat('%',#{typeName},'%')</if>
+        </where>
+    </select>
+
+</mapper>

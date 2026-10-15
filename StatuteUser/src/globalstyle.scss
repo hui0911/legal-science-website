@@ -1,0 +1,135 @@
+/**
+* scss 全局变量
+*
+* 已在vue.config.js挂载到全局
+*
+* 使用:
+* color: $font-color-small;
+*
+* 备注详细变量信息
+*/
+
+/* 全局字体激活颜色 */
+$basic-font-color: #5af;
+/* 全局灰色 */
+$font-color-grad: #bbb;
+
+/* 文字尺寸 */
+$font-size-small: 14px;
+
+// 公告样式
+.mc {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.flex1 {
+  flex-grow: 1;
+}
+
+.cb {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 6px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  border-radius: 5px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+
+.mb5 {
+  margin-bottom: 5px;
+}
+
+
+.mt5 {
+  margin-bottom: 5px;
+}
+
+.card {
+  padding: 10px 20px;
+}
+
+.mco {
+  color: $basic-font-color;
+}
+
+.gco {
+  color: $font-color-grad;
+}
+
+// 文本一行溢出
+.text1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  cursor: pointer;
+}
+
+// 文本两行溢出
+.text2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+// 文本三行溢出
+.text3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  cursor: pointer;
+}
+
+.pd10 {
+  padding: 10px;
+}
+
+.pd20 {
+  padding: 20px;
+}
+
+/** 单区域  自定义滚动条 */
+.overflow {
+  width: 100%;
+  overflow-y: auto;
+  max-height: 1500px;
+}
+
+.overflow::-webkit-scrollbar {
+  width: 0px;
+}
+
+.hc::-webkit-scrollbar {
+  width: 0px;
+}
+
+::v-deep .el-collapse-item__arrow {
+  color: black;
+  font-weight: bold;
+  font-size: 15px;
+}
