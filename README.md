@@ -44,13 +44,11 @@ bash
 cd Statute
 mvn spring-boot:run
 ### 前端
-1.用户端：
-bash
+**用户端：**
 cd StatuteUser
 npm install
 npm run dev
-2.管理端：
-bash
+**管理端：**
 cd StatuteManage
 npm install
 npm run dev
