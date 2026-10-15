@@ -38,5 +38,16 @@
 
 ### 数据库
 1. 导入 `admin.sql` 到 MySQL
-
+2. 修改 Statute/src/main/resources/application.yml 数据库连接配置
 ### 后端
+cd Statute
+mvn spring-boot:run
+### 前端
+1.用户端：
+cd StatuteUser
+npm install
+npm run dev
+2.管理端：
+cd StatuteManage
+npm install
+npm run dev
