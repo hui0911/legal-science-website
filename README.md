@@ -46,10 +46,14 @@ mvn spring-boot:run
 ```
 ### 前端
 **用户端：**
+```bash
 cd StatuteUser
 npm install
 npm run dev
+```
 **管理端：**
+```bash
 cd StatuteManage
 npm install
 npm run dev
+```
