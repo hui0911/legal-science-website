@@ -40,9 +40,10 @@
 1. 导入 `admin.sql` 到 MySQL
 2. 修改 Statute/src/main/resources/application.yml 数据库连接配置
 ### 后端
-bash
+```bash
 cd Statute
 mvn spring-boot:run
+```
 ### 前端
 **用户端：**
 cd StatuteUser
