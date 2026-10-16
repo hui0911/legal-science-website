@@ -7,7 +7,7 @@
         </div>
         <div class="bottom">
           <div>1、本站为法律科普网站-V1.0版，旨在为大家提供法律普及分享服务平台。</div>
-          <div>2、若本站共享的资源侵犯了您的利益，请联系站长，本站将在24小时内处理。邮箱：<span style="color: #5af">2046059710@qq.com</span></div>
+          <div>2、若本站共享的资源侵犯了您的利益，请联系站长，本站将在24小时内处理。邮箱：<span style="color: #5af">66666666@qq.com</span></div>
           <div>Copyright (C) 2026 法律科普网站 All Rights Reserved.</div>
         </div>
       </div>
